@@ -21,7 +21,7 @@ void WhackAMoleProgram::ButtonPressed(ButtonId button)
             EnterFailState(level);
         }
 
-        if (AllButtonsOff())
+        if ((!inverted && AllButtonsOff()) || (inverted && AllButtonsOn()))
         {
             nextAction = millis() + 200 + random() % 400;
             state      = WAIT;
@@ -45,7 +45,7 @@ void WhackAMoleProgram::Setup()
             button.TurnOn();
         }
     }
-    finishAt = millis() + 15000;
+    finishAt = millis() + 20000;
 }
 
 void WhackAMoleProgram::Loop()

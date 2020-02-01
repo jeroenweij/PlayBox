@@ -13,6 +13,7 @@ public:
     void FillRainbow();
     void Fade();
     void FillRainbowBlack();
+    void Count(uint8_t c);
 
     void Print(uint8_t num, CRGB color);
 private:

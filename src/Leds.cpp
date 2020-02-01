@@ -93,6 +93,15 @@ void Leds::FillRainbowBlack()
     fill_rainbow(leds, 12, 0, 21);
 }
 
+void Leds::Count(uint8_t c)
+{
+    for (uint8_t i = 0; i < c; i++)
+    {
+        leds[i]     = CRGB::Gold;
+        leds[i + 1] = CRGB::Black;
+    }
+}
+
 void Leds::Print(uint8_t num, CRGB color)
 {
     if (num > 99)
