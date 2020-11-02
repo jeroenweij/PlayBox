@@ -29,6 +29,14 @@ void Button::Setup()
     pinMode(pin, INPUT_PULLUP);
 }
 
+void Button::PowerDown()
+{
+    if (pin != 2)
+    {
+        pinMode(pin, INPUT);
+    }
+}
+
 void Button::Loop()
 {
     if (digitalRead(pin) == LOW)

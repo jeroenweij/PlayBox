@@ -2,6 +2,8 @@
 #include "Arduino.h"
 #include "LowPowerProgram.h"
 
+static const uint8_t ledEnablePin = 15;
+
 LowPowerProgram::LowPowerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
     Program(buttons, switchProgram, leds)
 { }
@@ -80,9 +82,14 @@ void LowPowerProgram::sleepNow() // here we put the arduino to sleep
      * pin 3 maps to interrupt 0 (INT0), pin 2 is interrupt 1 (INT1), pin 0 is interrupt 2 (INT2),
      *  pin 1 is interrupt 3 (INT3), and pin 7 is interrupt 4 (INT4). */
 
-    digitalWrite(15, LOW);
+    digitalWrite(ledEnablePin, LOW);
     while (digitalRead(2) == LOW)
     { }
+
+    for (auto& button : buttons)
+    {
+        button.PowerDown();
+    }
 
     delay(100);
 
@@ -95,10 +102,13 @@ void LowPowerProgram::sleepNow() // here we put the arduino to sleep
     sleep_disable(); // first thing after waking from sleep:
                      // disable sleep...
 
-    digitalWrite(15, HIGH);
+    digitalWrite(ledEnablePin, HIGH);
     detachInterrupt(INT1); // disables interrupt
                            // wakeUpNow code will not be executed
                            // during normal running time.
 
-    pinMode(2, INPUT_PULLUP);
+    for (auto& button : buttons)
+    {
+        button.Setup();
+    }
 }

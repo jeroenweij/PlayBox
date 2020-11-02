@@ -32,6 +32,7 @@ public:
     Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[], ButtonCallback callback, bool rainbow = false);
 
     void Setup();
+    void PowerDown();
     void Loop();
 
     void TurnOn(CRGB color, bool rainbow);

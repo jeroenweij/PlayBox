@@ -94,6 +94,9 @@ int main(void)
 
     USBDevice.attach();
 
+    // disable ADC
+    ADCSRA = 0;
+
     for (auto& button : buttons)
     {
         button.Setup();
