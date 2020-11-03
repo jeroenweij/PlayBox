@@ -50,4 +50,5 @@ private:
     bool failState;
     uint8_t timeout;
     bool isInit;
+    unsigned long leaveFailState;
 };

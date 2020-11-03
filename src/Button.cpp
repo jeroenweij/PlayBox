@@ -1,10 +1,12 @@
 #include "Button.h"
 #include "Arduino.h"
+#include "Buzzer.h"
 
-Button::Button(ButtonId id, uint8_t pin, CRGB color, CRGB* leds[12], ButtonCallback callback, bool rainbow) :
+Button::Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[12], ButtonCallback callback, bool rainbow) :
     id(id),
     pin(pin),
     color(color),
+    tone(tone),
     currentColor(color),
     bouncecount(0),
     pressed(false),
@@ -49,6 +51,7 @@ void Button::Loop()
         if (bouncecount < 3)
         {
             pressed = false;
+            analogWrite(10, 0);
         }
     }
     else
@@ -56,6 +59,7 @@ void Button::Loop()
         if (bouncecount > 3)
         {
             pressed = true;
+            PlayTone();
             callback(id);
         }
     }
@@ -103,6 +107,11 @@ void Button::Turn(bool on)
 void Button::TurnOn()
 {
     TurnOn(color, isRainbow);
+}
+
+void Button::PlayTone(uint8_t len)
+{
+    buzz(tone, len);
 }
 
 void Button::TurnOff()

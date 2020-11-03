@@ -12,7 +12,8 @@ Program::Program(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds, 
     failState(false),
     timeout(0),
     isInit(isInit),
-    nextAction(0)
+    nextAction(0),
+    leaveFailState(0)
 { }
 
 void Program::ButtonPressedCheckExit(ButtonId button)
@@ -47,9 +48,12 @@ void Program::ButtonPressedCheckExit(ButtonId button)
 
     if (failState)
     {
-        failState = false;
-        switchProgram(INIT);
-        return;
+        if (leaveFailState <= millis())
+        {
+            failState = false;
+            switchProgram(INIT);
+            return;
+        }
     }
     else
     {
@@ -135,5 +139,6 @@ void Program::EnterFailState(uint8_t score)
     {
         leds.Print(score, CRGB::Blue);
     }
-    nextAction = millis() + (score > 0 ? 5000 : 1200);
+    nextAction     = millis() + (score > 0 ? 5000 : 1200);
+    leaveFailState = millis() + 1000;
 }

@@ -45,7 +45,7 @@ void MixUpProgram::Setup()
     score     = 0;
     showScore = false;
     SelectButton(random() % 9);
-    finishAt = millis() + 20000;
+    finishAt = millis() + 30000;
 }
 
 void MixUpProgram::Loop()

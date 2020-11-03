@@ -14,6 +14,7 @@ void WhackAMoleProgram::ButtonPressed(ButtonId button)
     {
         if (inverted != buttons[button].IsOn())
         {
+            ++level;
             buttons[button].Turn(inverted);
         }
         else
@@ -45,7 +46,7 @@ void WhackAMoleProgram::Setup()
             button.TurnOn();
         }
     }
-    finishAt = millis() + 20000;
+    finishAt = millis() + 30000;
 }
 
 void WhackAMoleProgram::Loop()
@@ -69,7 +70,6 @@ void WhackAMoleProgram::Loop()
             buttons[random() % 9].Turn(!inverted);
         }
         state = PRESS;
-        ++level;
     }
     else if (state == WAIT)
     {

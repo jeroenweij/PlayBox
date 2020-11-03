@@ -29,7 +29,7 @@ struct Neighbor
 class Button
 {
 public:
-    Button(ButtonId id, uint8_t pin, CRGB color, CRGB* leds[], ButtonCallback callback, bool rainbow = false);
+    Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[], ButtonCallback callback, bool rainbow = false);
 
     void Setup();
     void Loop();
@@ -44,6 +44,7 @@ public:
     bool IsRainbow() const;
     CRGB GetColor() const;
     void SetNeighbor(Neighbor neighbor);
+    void PlayTone(uint8_t len = 100);
 
 private:
     void Rainbow();
@@ -54,6 +55,7 @@ private:
     ButtonId id;
     uint8_t pin;
     const CRGB color;
+    uint16_t tone;
     CRGB currentColor;
     CRGB* leds[12];
 

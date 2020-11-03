@@ -3,7 +3,7 @@
 #include "Program.h"
 #include "Button.h"
 
-#define MAX_LEVEL 15
+#define MAX_LEVEL 50
 
 class SimonProgram : public Program
 {

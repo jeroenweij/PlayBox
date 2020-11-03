@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include "Arduino.h"
+#include "Buzzer.h"
 #include "Leds.h"
 #include "Button.h"
 #include "Program.h"
@@ -20,15 +21,15 @@ void SwitchProgram(Programs newProgram);
 
 static Leds leds;
 static Button buttons[9] = {
-    Button(ButtonId::BLACK,  2,  CRGB::Gray,       leds.GetRing(0), &ButtonCalled,  true),
-    Button(ButtonId::GREEN,  3,  CRGB::Green,      leds.GetRing(1), &ButtonCalled),
-    Button(ButtonId::ORANGE, 4,  CRGB::OrangeRed,  leds.GetRing(2), &ButtonCalled),
-    Button(ButtonId::PINK,   5,  CRGB::DeepPink,   leds.GetRing(3), &ButtonCalled),
-    Button(ButtonId::YELLOW, 6,  CRGB::Yellow,     leds.GetRing(4), &ButtonCalled),
-    Button(ButtonId::BLUE,   7,  CRGB::Blue,       leds.GetRing(5), &ButtonCalled),
-    Button(ButtonId::RED,    8,  CRGB::Red,        leds.GetRing(6), &ButtonCalled),
-    Button(ButtonId::WHITE,  9,  CRGB::WhiteSmoke, leds.GetRing(7), &ButtonCalled),
-    Button(ButtonId::PURPLE, 10, CRGB::Purple,     leds.GetRing(8), &ButtonCalled)
+    Button(ButtonId::BLACK,  2,  CRGB::Gray,       NOTE_A6, leds.GetRing(0), &ButtonCalled,  true),
+    Button(ButtonId::GREEN,  3,  CRGB::Green,      NOTE_B5, leds.GetRing(1), &ButtonCalled),
+    Button(ButtonId::ORANGE, 4,  CRGB::OrangeRed,  NOTE_C6, leds.GetRing(2), &ButtonCalled),
+    Button(ButtonId::PINK,   5,  CRGB::DeepPink,   NOTE_D6, leds.GetRing(3), &ButtonCalled),
+    Button(ButtonId::YELLOW, 6,  CRGB::Yellow,     NOTE_E6, leds.GetRing(4), &ButtonCalled),
+    Button(ButtonId::BLUE,   7,  CRGB::Blue,       NOTE_F6, leds.GetRing(5), &ButtonCalled),
+    Button(ButtonId::RED,    8,  CRGB::Red,        NOTE_G6, leds.GetRing(6), &ButtonCalled),
+    Button(ButtonId::WHITE,  9,  CRGB::WhiteSmoke, NOTE_A6, leds.GetRing(7), &ButtonCalled),
+    Button(ButtonId::PURPLE, 16, CRGB::Purple,     NOTE_B6, leds.GetRing(8), &ButtonCalled)
 };
 
 static void setNeighbors()
@@ -102,7 +103,12 @@ int main(void)
     SwitchProgram(Programs::INIT);
     pinMode(15, OUTPUT);
     digitalWrite(15, HIGH);
+    pinMode(10, OUTPUT);
+    digitalWrite(10, LOW);
     leds.Setup();
+
+    playAll();
+
     for (;;)
     {
         currentProgram->Loop();

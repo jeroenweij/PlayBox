@@ -34,9 +34,12 @@ void SimonProgram::ButtonPressed(ButtonId button)
     }
     else if (state == SimonState::SHOW)
     {
-        state = SimonState::SCORE;
-        TurnButtonsOff();
-        leds.Print(lastScore, CRGB::Blue);
+        if (level < 2)
+        {
+            state = SimonState::SCORE;
+            TurnButtonsOff();
+            leds.Print(lastScore, CRGB::Blue);
+        }
     }
     else if (state == SimonState::OK)
     {
@@ -107,6 +110,8 @@ void SimonProgram::Loop()
                 if (step < level)
                 {
                     buttons[sequence[step]].TurnOn();
+                    buttons[sequence[step]].PlayTone(200);
+
                     ++step;
                 }
                 else

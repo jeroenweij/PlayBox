@@ -10,6 +10,8 @@ set(ThijsBox_SOURCES
     src/main.cpp
     src/Button.h
     src/Button.cpp
+    src/Buzzer.h
+    src/Buzzer.cpp
     src/Program.h
     src/Program.cpp
     src/InitProgram.h

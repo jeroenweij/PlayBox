@@ -126,6 +126,13 @@ void Leds::PrintDigit(CRGB* segment[7][3], uint8_t digit, CRGB color)
                 *l = color;
             }
         }
+        else
+        {
+            for (auto& l : segment[i])
+            {
+                *l = CRGB::Black;
+            }
+        }
     }
 }
 
