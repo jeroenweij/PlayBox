@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 2.8)
 project(ThijsBox C CXX)
 
 set(ThijsBox_SOURCES
-    src/main.cpp
+    src/PlayBox.cpp
     src/Button.h
     src/Button.cpp
     src/Buzzer.h

@@ -88,15 +88,8 @@ void SwitchProgram(Programs newProgram)
     currentProgram->Setup();
 }
 
-int main(void)
+void setup(void)
 {
-    init();
-
-    USBDevice.attach();
-
-    // disable ADC
-    ADCSRA = 0;
-
     for (auto& button : buttons)
     {
         button.Setup();
@@ -111,19 +104,18 @@ int main(void)
     leds.Setup();
 
     playAll();
+}
 
-    for (;;)
+void loop(void)
+{
+    currentProgram->Loop();
+    currentProgram->CheckTimeout();
+
+    leds.Loop();
+
+    for (auto& button : buttons)
     {
-        currentProgram->Loop();
-        currentProgram->CheckTimeout();
-
-        leds.Loop();
-
-        for (auto& button : buttons)
-        {
-            button.Loop();
-        }
-        delay(1);
-        if (serialEventRun){serialEventRun();}
+        button.Loop();
     }
+    delay(1);
 }
