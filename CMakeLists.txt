@@ -1,6 +1,7 @@
 
 
 set(CMAKE_TOOLCHAIN_FILE tools/cmake/ArduinoToolchain.cmake)
+set(USE_FASTLED ON)
 
 cmake_minimum_required(VERSION 2.8)
 
