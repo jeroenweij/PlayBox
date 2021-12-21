@@ -8,7 +8,7 @@ Button::Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[1
     color(color),
     tone(tone),
     currentColor(color),
-    bouncecount(0),
+    lastUpdate(0),
     pressed(false),
     callback(callback),
     isRainbow(rainbow),
@@ -39,36 +39,25 @@ void Button::PowerDown()
 
 void Button::Loop()
 {
-    if (digitalRead(pin) == LOW)
-    {
-        if (bouncecount < 5)
+    if(millis() - lastUpdate > 150){
+        if (!digitalRead(pin) )
         {
-            ++bouncecount;
+            if (!pressed)
+            {
+                lastUpdate = millis();
+                pressed = true;
+                PlayTone();
+                callback(id);
+            }
         }
-    }
-    else
-    {
-        if (bouncecount > 0)
+        else
         {
-            --bouncecount;
-        }
-    }
-
-    if (pressed)
-    {
-        if (bouncecount < 3)
-        {
-            pressed = false;
-            analogWrite(10, 0);
-        }
-    }
-    else
-    {
-        if (bouncecount > 3)
-        {
-            pressed = true;
-            PlayTone();
-            callback(id);
+            if (pressed)
+            {
+                lastUpdate = millis();
+                pressed = false;
+                buzzOff();
+            }
         }
     }
 }

@@ -91,3 +91,4 @@
 void playAll();
 void sing(int s);
 void buzz(long frequency, long length);
+void buzzOff();

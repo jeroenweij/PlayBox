@@ -160,3 +160,8 @@ void buzz(long frequency, long length)
         delayMicroseconds(delayValue); // wait again or the calculated delay value
     }
 }
+
+void buzzOff()
+{
+    digitalWrite(melodyPin, LOW);
+}

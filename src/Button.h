@@ -60,7 +60,7 @@ private:
     CRGB currentColor;
     CRGB* leds[12];
 
-    uint8_t bouncecount;
+    unsigned long lastUpdate;
     bool pressed;
     bool isOn;
     ButtonCallback callback;
