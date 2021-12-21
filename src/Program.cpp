@@ -2,9 +2,10 @@
 #include "InitProgram.h"
 
 Program::~Program()
-{ }
+{
+}
 
-Program::Program(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds, bool isInit) :
+Program::Program(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds, bool isInit) :
     buttons(buttons),
     switchProgram(switchProgram),
     leds(leds),
@@ -14,7 +15,8 @@ Program::Program(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds, 
     isInit(isInit),
     nextAction(0),
     leaveFailState(0)
-{ }
+{
+}
 
 void Program::ButtonPressedCheckExit(ButtonId button)
 {
@@ -63,7 +65,7 @@ void Program::ButtonPressedCheckExit(ButtonId button)
 
 void Program::Teardown()
 {
-    for (auto &button : buttons)
+    for (auto& button : buttons)
     {
         button.TurnOff();
         blackCount = 0;
@@ -101,7 +103,7 @@ void Program::CheckTimeout()
 
 void Program::TurnButtonsOff()
 {
-    for (auto &button : buttons)
+    for (auto& button : buttons)
     {
         button.TurnOff();
     }
@@ -109,7 +111,7 @@ void Program::TurnButtonsOff()
 
 bool Program::AllButtonsOff()
 {
-    for (auto &button : buttons)
+    for (auto& button : buttons)
     {
         if (button.IsOn())
         {
@@ -121,7 +123,7 @@ bool Program::AllButtonsOff()
 
 bool Program::AllButtonsOn()
 {
-    for (auto &button : buttons)
+    for (auto& button : buttons)
     {
         if (!button.IsOn())
         {

@@ -2,7 +2,13 @@
 #include "Arduino.h"
 #include "Buzzer.h"
 
-Button::Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[12], ButtonCallback callback, bool rainbow) :
+Button::Button(ButtonId       id,
+               uint8_t        pin,
+               CRGB           color,
+               uint16_t       tone,
+               CRGB*          leds[12],
+               ButtonCallback callback,
+               bool           rainbow) :
     id(id),
     pin(pin),
     color(color),
@@ -39,13 +45,14 @@ void Button::PowerDown()
 
 void Button::Loop()
 {
-    if(millis() - lastUpdate > 150){
-        if (!digitalRead(pin) )
+    if (millis() - lastUpdate > 150)
+    {
+        if (!digitalRead(pin))
         {
             if (!pressed)
             {
                 lastUpdate = millis();
-                pressed = true;
+                pressed    = true;
                 PlayTone();
                 callback(id);
             }
@@ -55,7 +62,7 @@ void Button::Loop()
             if (pressed)
             {
                 lastUpdate = millis();
-                pressed = false;
+                pressed    = false;
                 buzzOff();
             }
         }
@@ -80,7 +87,7 @@ void Button::TurnOn(CRGB color, bool rainbow)
 
 void Button::Fill(CRGB color)
 {
-    for (const auto &led : leds)
+    for (const auto& led : leds)
     {
         if (led != NULL)
         {
@@ -199,9 +206,9 @@ void Button::Rainbow()
     hsv.hue = 0;
     hsv.val = 255;
     hsv.sat = 240;
-    for (const auto &led : leds)
+    for (const auto& led : leds)
     {
-        *led     = hsv;
+        *led = hsv;
         hsv.hue += 21;
     }
 }

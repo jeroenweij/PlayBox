@@ -1,11 +1,11 @@
-#include "Arduino.h"
 #include "Buzzer.h"
+#include "Arduino.h"
 
 /*************************************************
 * Public Constants
 *************************************************/
 
-#define REST      0
+#define REST 0
 #define melodyPin 10
 // Mario main theme melody
 
@@ -125,7 +125,7 @@ void sing(int s)
         else if (divider < 0)
         {
             // dotted notes are represented with negative durations!!
-            noteDuration  = (wholenote) / abs(divider);
+            noteDuration = (wholenote) / abs(divider);
             noteDuration *= 1.5; // increases the duration in half for dotted notes
         }
 
@@ -156,7 +156,7 @@ void buzz(long frequency, long length)
     {
         digitalWrite(melodyPin, HIGH); // write the buzzer pin high to push out the diaphram
         delayMicroseconds(delayValue); // wait for the calculated delay value
-        digitalWrite(melodyPin, LOW);  // write the buzzer pin low to pull back the diaphram
+        digitalWrite(melodyPin, LOW); // write the buzzer pin low to pull back the diaphram
         delayMicroseconds(delayValue); // wait again or the calculated delay value
     }
 }

@@ -1,12 +1,13 @@
-#include <avr/sleep.h>
-#include "Arduino.h"
 #include "LowPowerProgram.h"
+#include "Arduino.h"
+#include <avr/sleep.h>
 
 static const uint8_t ledEnablePin = 15;
 
-LowPowerProgram::LowPowerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+LowPowerProgram::LowPowerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds)
-{ }
+{
+}
 
 void LowPowerProgram::ButtonPressed(ButtonId button)
 {
@@ -14,7 +15,8 @@ void LowPowerProgram::ButtonPressed(ButtonId button)
 }
 
 void LowPowerProgram::Setup()
-{ }
+{
+}
 
 void LowPowerProgram::Loop()
 {
@@ -54,7 +56,7 @@ void LowPowerProgram::sleepNow() // here we put the arduino to sleep
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); // sleep mode is set here
 
     sleep_enable(); // enables the sleep bit in the mcucr register
-                    // so sleep is possible. just a safety pin
+        // so sleep is possible. just a safety pin
 
     /* Now it is time to enable an interrupt. We do it here so an
      * accidentally pushed interrupt button doesn't interrupt
@@ -84,7 +86,8 @@ void LowPowerProgram::sleepNow() // here we put the arduino to sleep
 
     digitalWrite(ledEnablePin, LOW);
     while (digitalRead(2) == LOW)
-    { }
+    {
+    }
 
     for (auto& button : buttons)
     {
@@ -94,18 +97,18 @@ void LowPowerProgram::sleepNow() // here we put the arduino to sleep
     delay(100);
 
     attachInterrupt(INT1, wakeUpNow, LOW); // use interrupt 0 (pin 2) and run function
-                                           // wakeUpNow when pin 2 gets LOW
+        // wakeUpNow when pin 2 gets LOW
 
     sleep_mode(); // here the device is actually put to sleep!!
-                  // THE PROGRAM CONTINUES FROM HERE AFTER WAKING UP
+        // THE PROGRAM CONTINUES FROM HERE AFTER WAKING UP
 
     sleep_disable(); // first thing after waking from sleep:
-                     // disable sleep...
+        // disable sleep...
 
     digitalWrite(ledEnablePin, HIGH);
     detachInterrupt(INT1); // disables interrupt
-                           // wakeUpNow code will not be executed
-                           // during normal running time.
+        // wakeUpNow code will not be executed
+        // during normal running time.
 
     for (auto& button : buttons)
     {

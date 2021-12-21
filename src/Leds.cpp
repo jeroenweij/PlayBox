@@ -1,20 +1,19 @@
-﻿#define FASTLED_ALLOW_INTERRUPTS      0
+﻿#define FASTLED_ALLOW_INTERRUPTS 0
 #define FASTLED_INTERRUPT_RETRY_COUNT 0
 
 #include "Leds.h"
 
 FASTLED_USING_NAMESPACE
 
-
-#define NUM_LEDS          88
-#define BRIGHTNESS        15 // 96
+#define NUM_LEDS 88
+#define BRIGHTNESS 15 // 96
 #define FRAMES_PER_SECOND 120
 
 static CRGB leds[NUM_LEDS];
 
 static CRGB* rings[9][12] = {
     // BLACK
-    {&leds[0],  &leds[1],  &leds[2],  &leds[3],  &leds[4],  &leds[5],  &leds[6],  &leds[7],  &leds[8],  &leds[9],  &leds[10], &leds[11]},
+    {&leds[0], &leds[1], &leds[2], &leds[3], &leds[4], &leds[5], &leds[6], &leds[7], &leds[8], &leds[9], &leds[10], &leds[11]},
     // GREEN
     {&leds[25], &leds[26], &leds[56], &leds[57], &leds[58], &leds[59], &leds[60], &leds[61], &leds[62], &leds[63], &leds[23], &leds[24]},
     // ORANGE
@@ -30,8 +29,7 @@ static CRGB* rings[9][12] = {
     // WHITE
     {&leds[44], &leds[45], &leds[46], &leds[47], &leds[48], &leds[49], &leds[50], &leds[29], &leds[30], &leds[31], &leds[32], &leds[43]},
     // PURPLE
-    {&leds[50], &leds[49], &leds[51], &leds[52], &leds[53], &leds[54], &leds[55], &leds[56], &leds[26], &leds[27], &leds[28], &leds[29]}
-};
+    {&leds[50], &leds[49], &leds[51], &leds[52], &leds[53], &leds[54], &leds[55], &leds[56], &leds[26], &leds[27], &leds[28], &leds[29]}};
 
 static CRGB* segment1[7][3] = {
     {&leds[80], &leds[81], &leds[82]},
@@ -50,9 +48,7 @@ static CRGB* segment2[7][3] = {
     {&leds[49], &leds[50], &leds[29]},
     {&leds[26], &leds[27], &leds[28]},
     {&leds[51], &leds[52], &leds[53]},
-    {&leds[54], &leds[55], &leds[56]}
-};
-
+    {&leds[54], &leds[55], &leds[56]}};
 
 void Leds::Setup()
 {

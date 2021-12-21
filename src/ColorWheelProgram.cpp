@@ -1,8 +1,9 @@
 #include "ColorWheelProgram.h"
 
-ColorWheelProgram::ColorWheelProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds)
-    : Program(buttons, switchProgram, leds)
-{ }
+ColorWheelProgram::ColorWheelProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
+    Program(buttons, switchProgram, leds)
+{
+}
 
 void ColorWheelProgram::ButtonPressed(ButtonId button)
 {
@@ -17,7 +18,9 @@ void ColorWheelProgram::ButtonPressed(ButtonId button)
 }
 
 void ColorWheelProgram::Setup()
-{ }
+{
+}
 
 void ColorWheelProgram::Loop()
-{ }
+{
+}

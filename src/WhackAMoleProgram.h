@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Program.h"
 #include "Button.h"
+#include "Program.h"
 
 class WhackAMoleProgram : public Program
 {
-public:
-    WhackAMoleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds, bool inverted = false);
+  public:
+    WhackAMoleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds, bool inverted = false);
     void ButtonPressed(ButtonId button) override;
 
     void Setup() override;
     void Loop() override;
 
-private:
+  private:
     enum MoleState
     {
         CHOOSE,
@@ -20,8 +20,8 @@ private:
         WAIT,
         SCORE
     };
-    MoleState state;
-    uint8_t level;
-    bool inverted;
+    MoleState     state;
+    uint8_t       level;
+    bool          inverted;
     unsigned long finishAt;
 };

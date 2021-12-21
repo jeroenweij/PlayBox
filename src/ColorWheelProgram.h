@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Program.h"
 #include "Button.h"
+#include "Program.h"
 
 class ColorWheelProgram : public Program
 {
-public:
-    ColorWheelProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds);
+  public:
+    ColorWheelProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds);
     void ButtonPressed(ButtonId button) override;
 
     void Setup() override;
     void Loop() override;
 
-private:
+  private:
     ProgramSwitch switchProgram;
 };

@@ -4,10 +4,10 @@
 
 class SegmentDisplay
 {
-public:
-    SegmentDisplay(Leds &leds);
-private:
+  public:
+    SegmentDisplay(Leds& leds);
 
+  private:
     struct Segment
     {
         CRGB* leds[3];
@@ -17,7 +17,7 @@ private:
     {
         Segment segments[7];
     };
-    Leds &leds;
+    Leds& leds;
 
     Digit digits[2];
 };

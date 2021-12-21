@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Program.h"
 #include "Button.h"
+#include "Program.h"
 
 class TicTacToeProgram : public Program
 {
-public:
-    TicTacToeProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds);
+  public:
+    TicTacToeProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds);
     void ButtonPressed(ButtonId button) override;
 
     void Setup() override;
     void Loop() override;
 
-private:
+  private:
     enum class State
     {
         PLAY,
@@ -20,9 +20,9 @@ private:
         FAIL
     };
 
-    State state;
-    bool Is3InLine();
-    bool player1;
+    State   state;
+    bool    Is3InLine();
+    bool    player1;
     uint8_t winLine[3];
-    CRGB winCollor;
+    CRGB    winCollor;
 };

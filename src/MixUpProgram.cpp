@@ -1,13 +1,14 @@
 #include "MixUpProgram.h"
 
-MixUpProgram::MixUpProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+MixUpProgram::MixUpProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds),
     colorId(0),
     prevButtonId(0),
     score(0),
     finishAt(0),
     showScore(false)
-{ }
+{
+}
 
 void MixUpProgram::ButtonPressed(ButtonId button)
 {

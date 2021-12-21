@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Program.h"
 #include "Button.h"
+#include "Program.h"
 
 class ColorPickerProgram : public Program
 {
-public:
-    ColorPickerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds);
+  public:
+    ColorPickerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds);
     void ButtonPressed(ButtonId button) override;
 
     void Setup() override;
     void Loop() override;
 
-private:
+  private:
     CRGB color;
     bool rainbow;
 };

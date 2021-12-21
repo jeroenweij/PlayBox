@@ -16,7 +16,7 @@ enum ButtonId
     PURPLE
 };
 
-typedef void (* ButtonCallback)(ButtonId buttonId);
+typedef void (*ButtonCallback)(ButtonId buttonId);
 
 class Button;
 struct Neighbor
@@ -28,7 +28,7 @@ struct Neighbor
 
 class Button
 {
-public:
+  public:
     Button(ButtonId id, uint8_t pin, CRGB color, uint16_t tone, CRGB* leds[], ButtonCallback callback, bool rainbow = false);
 
     void Setup();
@@ -47,27 +47,27 @@ public:
     void SetNeighbor(Neighbor neighbor);
     void PlayTone(uint8_t len = 100);
 
-private:
+  private:
     void Rainbow();
 
     void CheckNeighbor(Neighbor& neighbor);
     void CheckNeighborRainbow(Neighbor& neighbor);
 
-    ButtonId id;
-    uint8_t pin;
+    ButtonId   id;
+    uint8_t    pin;
     const CRGB color;
-    uint16_t tone;
-    CRGB currentColor;
-    CRGB* leds[12];
+    uint16_t   tone;
+    CRGB       currentColor;
+    CRGB*      leds[12];
 
-    unsigned long lastUpdate;
-    bool pressed;
-    bool isOn;
+    unsigned long  lastUpdate;
+    bool           pressed;
+    bool           isOn;
     ButtonCallback callback;
-    bool isRainbow;
-    bool currentRainbow;
-    Neighbor neighbor1;
-    Neighbor neighbor2;
+    bool           isRainbow;
+    bool           currentRainbow;
+    Neighbor       neighbor1;
+    Neighbor       neighbor2;
 };
 
 #endif // BUTTON_H

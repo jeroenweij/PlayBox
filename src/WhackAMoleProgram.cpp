@@ -1,12 +1,13 @@
 #include "WhackAMoleProgram.h"
 #include "Arduino.h"
 
-WhackAMoleProgram::WhackAMoleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds, bool inverted)
-    : Program(buttons, switchProgram, leds),
+WhackAMoleProgram::WhackAMoleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds, bool inverted) :
+    Program(buttons, switchProgram, leds),
     level(0),
     inverted(inverted),
     finishAt(0)
-{ }
+{
+}
 
 void WhackAMoleProgram::ButtonPressed(ButtonId button)
 {
@@ -63,7 +64,7 @@ void WhackAMoleProgram::Loop()
             nextAction = millis() + 5000;
             return;
         }
-        count = 0;
+        count         = 0;
         uint8_t moles = random() % 3 + 1;
         for (uint8_t i = 0; i < moles; ++i)
         {

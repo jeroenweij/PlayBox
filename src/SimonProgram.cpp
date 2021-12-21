@@ -1,13 +1,14 @@
 ﻿#include "SimonProgram.h"
 #include "Arduino.h"
 
-SimonProgram::SimonProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+SimonProgram::SimonProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds),
     level(0),
     state(SimonState::MAKE),
     checkId(0),
     lastScore(0)
-{ }
+{
+}
 
 void SimonProgram::ButtonPressed(ButtonId button)
 {

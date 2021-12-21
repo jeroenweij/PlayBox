@@ -1,10 +1,11 @@
 #include "TicTacToeProgram.h"
 
-TicTacToeProgram::TicTacToeProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+TicTacToeProgram::TicTacToeProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds),
     state(State::PLAY),
     player1(true)
-{ }
+{
+}
 
 void TicTacToeProgram::ButtonPressed(ButtonId button)
 {
@@ -91,7 +92,7 @@ bool TicTacToeProgram::Is3InLine()
         for (uint8_t i = 1; i <= 4; ++i)
         {
             if (buttons[i].IsOn() && (buttons[i].GetColor() == color) &&
-              buttons[i + 4].IsOn() && (buttons[i + 4].GetColor() == color))
+                buttons[i + 4].IsOn() && (buttons[i + 4].GetColor() == color))
             {
                 winLine[0] = 0;
                 winLine[1] = i;
@@ -108,7 +109,7 @@ bool TicTacToeProgram::Is3InLine()
         {
             CRGB color = buttons[i + 1].GetColor();
             if (buttons[(i + 1) % 8 + 1].IsOn() && (buttons[(i + 1) % 8 + 1].GetColor() == color) &&
-              buttons[(i + 2) % 8 + 1].IsOn() && (buttons[(i + 2) % 8 + 1].GetColor() == color))
+                buttons[(i + 2) % 8 + 1].IsOn() && (buttons[(i + 2) % 8 + 1].GetColor() == color))
             {
                 winLine[0] = i + 1;
                 winLine[1] = (i + 1) % 8 + 1;

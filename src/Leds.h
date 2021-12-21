@@ -4,18 +4,19 @@
 
 class Leds
 {
-public:
+  public:
     void Setup();
     void Loop();
 
     CRGB** GetRing(uint8_t ringNum);
-    void FillSolid(CRGB color);
-    void FillRainbow();
-    void Fade();
-    void FillRainbowBlack();
-    void Count(uint8_t c);
+    void   FillSolid(CRGB color);
+    void   FillRainbow();
+    void   Fade();
+    void   FillRainbowBlack();
+    void   Count(uint8_t c);
 
     void Print(uint8_t num, CRGB color);
-private:
+
+  private:
     void PrintDigit(CRGB* segment[7][3], uint8_t digit, CRGB color);
 };

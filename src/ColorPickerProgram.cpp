@@ -1,10 +1,11 @@
 #include "ColorPickerProgram.h"
 
-ColorPickerProgram::ColorPickerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+ColorPickerProgram::ColorPickerProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds),
     color(CRGB::White),
     rainbow(false)
-{ }
+{
+}
 
 void ColorPickerProgram::ButtonPressed(ButtonId button)
 {
@@ -30,4 +31,5 @@ void ColorPickerProgram::Setup()
 }
 
 void ColorPickerProgram::Loop()
-{ }
+{
+}

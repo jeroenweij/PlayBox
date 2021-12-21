@@ -1,9 +1,10 @@
 #include "ToggleProgram.h"
 
-ToggleProgram::ToggleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds) :
+ToggleProgram::ToggleProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
     Program(buttons, switchProgram, leds),
     goOn(true)
-{ }
+{
+}
 
 void ToggleProgram::ButtonPressed(ButtonId button)
 {
@@ -30,4 +31,5 @@ void ToggleProgram::Setup()
 }
 
 void ToggleProgram::Loop()
-{ }
+{
+}

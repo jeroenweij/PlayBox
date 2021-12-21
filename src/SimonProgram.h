@@ -1,20 +1,20 @@
 #pragma once
 
-#include "Program.h"
 #include "Button.h"
+#include "Program.h"
 
 #define MAX_LEVEL 50
 
 class SimonProgram : public Program
 {
-public:
-    SimonProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds);
+  public:
+    SimonProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds);
     void ButtonPressed(ButtonId button) override;
 
     void Setup() override;
     void Loop() override;
 
-private:
+  private:
     enum class SimonState
     {
         MAKE,
@@ -25,9 +25,9 @@ private:
         FAIL
     };
 
-    uint8_t sequence[MAX_LEVEL];
-    uint8_t level;
+    uint8_t    sequence[MAX_LEVEL];
+    uint8_t    level;
     SimonState state;
-    uint8_t checkId;
-    uint8_t lastScore;
+    uint8_t    checkId;
+    uint8_t    lastScore;
 };

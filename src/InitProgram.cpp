@@ -1,9 +1,10 @@
 #include "InitProgram.h"
 
-InitProgram::InitProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds &leds)
-    : Program(buttons, switchProgram, leds, true),
+InitProgram::InitProgram(Button (&buttons)[9], ProgramSwitch switchProgram, Leds& leds) :
+    Program(buttons, switchProgram, leds, true),
     showRainbow(true)
-{ }
+{
+}
 
 void InitProgram::ButtonPressed(ButtonId button)
 {
@@ -24,7 +25,8 @@ void InitProgram::Setup()
 
 void InitProgram::Loop()
 {
-    EVERY_N_MILLISECONDS(100){
+    EVERY_N_MILLISECONDS(100)
+    {
         index = (++index) % 8;
     }
     leds.Fade();
