@@ -1,13 +1,14 @@
 
-
-set(CMAKE_TOOLCHAIN_FILE tools/cmake/ArduinoToolchain.cmake)
+cmake_minimum_required(VERSION 2.8)
 set(USE_FASTLED ON)
 
-cmake_minimum_required(VERSION 2.8)
+include(tools/cmake/arduino.cmake)
 
-project(ThijsBox C CXX)
+project(PlayBox C CXX)
 
-set(ThijsBox_SOURCES
+add_subdirectory(tools)
+
+add_executable(${CMAKE_PROJECT_NAME}
     src/PlayBox.cpp
     src/Button.h
     src/Button.cpp
@@ -37,9 +38,6 @@ set(ThijsBox_SOURCES
     src/Leds.cpp
     )
 
-add_subdirectory(tools)
-
-add_executable(${CMAKE_PROJECT_NAME} ${ThijsBox_SOURCES})
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES SUFFIX ".elf")
 target_link_libraries(${CMAKE_PROJECT_NAME} arduinocore avrlib fastled)
 
